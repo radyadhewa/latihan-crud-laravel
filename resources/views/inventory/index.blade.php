@@ -16,12 +16,14 @@
 <body>
   <h1>Manajemen Inventori</h1>
 
+  <a href="/inventory/create">Tambah Inventori</a>
   <table>
     <tr>
       <th>Nama Barang</th>
       <th>Jenis Barang</th>
       <th>Jumlah</th>
       <th>Tanggal Masuk</th>
+      <th>Aksi</th>
     </tr>
 
     @foreach($databes as $i)
@@ -30,6 +32,14 @@
       <td>{{$i->jenis_barang}}</td>
       <td>{{$i->jumlah}}</td>
       <td>{{$i->tanggal_masuk}}</td>
+      <td>
+        <a href="/inventory/{{$i->id}}/edit">Edit Data</a>
+        <form action="/inventory/{{$i->id}}" method="POST">
+          @csrf
+          @method('delete')
+          <input type="submit" value="Hapus Data">
+        </form>
+      </td>
     </tr>
     @endforeach
   </table>
